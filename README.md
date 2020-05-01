@@ -1,4 +1,4 @@
-# Dark Reviews [![Build Status](https://travis-ci.com/david30907d/pyproject_template.svg?branch=master)](https://travis-ci.com/github/david30907d/pyproject_template)
+# Dark Reviews ![Docker Image CI](https://github.com/david30907d/dark_reviews/workflows/Docker%20Image%20CI/badge.svg)
 
 ## Install
 
