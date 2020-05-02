@@ -19,6 +19,7 @@ def test_parse_inner_page1() -> None:
             "phone_number": "",
             "website": "",
             "price": "",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -35,6 +36,7 @@ def test_parse_inner_page2() -> None:
             "phone_number": "",
             "website": "",
             "price": "",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -51,6 +53,7 @@ def test_parse_inner_page3() -> None:
             "phone_number": "0900506327",
             "website": "",
             "price": "1400",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -67,6 +70,7 @@ def test_parse_inner_page4() -> None:
             "phone_number": "0916-415-110",
             "website": "",
             "price": "2400",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -83,6 +87,7 @@ def test_parse_inner_page5() -> None:
             "phone_number": "",
             "website": "",
             "price": "",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -99,6 +104,7 @@ def test_parse_inner_page6() -> None:
             "phone_number": "0967–314–285",
             "website": "",
             "price": "2300",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -115,6 +121,7 @@ def test_parse_inner_page7() -> None:
             "phone_number": "0939690904",
             "website": "",
             "price": "1800",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -131,6 +138,7 @@ def test_parse_inner_page8() -> None:
             "phone_number": "",
             "website": "",
             "price": "",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -147,6 +155,7 @@ def test_parse_inner_page9() -> None:
             "phone_number": "",
             "website": "",
             "price": "",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
 
@@ -163,5 +172,6 @@ def test_parse_inner_page10() -> None:
             "phone_number": "0974-125-599",
             "website": "",
             "price": "2000",
+            "img": "",
         }:
             raise AssertionError("parse_inner_page!")
