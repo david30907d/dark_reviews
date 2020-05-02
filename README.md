@@ -15,3 +15,7 @@
 ```bash
 scrapy crawl jkforum -o output.json
 ```
+
+## Test
+
+please check [.github/workflows/dockerimage.yml](.github/workflows/dockerimage.yml)
