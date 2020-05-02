@@ -14,6 +14,12 @@ class JkforumSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
+        ''' This function parses jkforum. Some contracts are mingled
+        with this docstring.
+
+        @url https://www.jkforum.net/forum-1128-1.html
+        @scrapes line_id wechat_id whatsapp_id phone_number website price img country city url
+        '''
         outside_page_handlers_config = {
             "img": self._get_img,
             "country": self._get_country,
@@ -21,7 +27,7 @@ class JkforumSpider(scrapy.Spider):
             "url": lambda item: item.select("a.s.xst")[0],
         }
 
-        soup = BeautifulSoup(response.text)
+        soup = BeautifulSoup(response.text, features="lxml")
         for item in soup.select("tbody")[:20]:
             dv_item = DarkViewsItem()
             if item.get("id"):
@@ -36,18 +42,25 @@ class JkforumSpider(scrapy.Spider):
                     )
 
     def parse_inner_page(self, response, **dv_item):
+        ''' This function parses jkforum. Some contracts are mingled
+        with this docstring.
+
+        @url https://www.jkforum.net/thread-11356677-1-1.html
+        @returns items 1 1
+        @scrapes line_id wechat_id whatsapp_id phone_number website price
+        '''
+
         inner_page_handlers_config = {
-            "line": self._get_line_id,
-            "wechat": self._get_wechat_id,
-            "whatsapp": self._get_whatsapp_id,
+            "line_id": self._get_line_id,
+            "wechat_id": self._get_wechat_id,
+            "whatsapp_id": self._get_whatsapp_id,
             "phone_number": self._get_phone_number,
             "website": self._get_website,
             "price": self._get_price,
         }
-        inner_page = BeautifulSoup(response.text).select("div.pcb")[0]
+        inner_page = BeautifulSoup(response.text, features="lxml").select("div.pcb")[0]
         inner_page = unicodedata.normalize('NFKC', inner_page.text)
         inner_page_text = inner_page.replace("：", ":").replace(" ", "").lower()
-        print(inner_page_text)
         for field, handler in inner_page_handlers_config.items():
             dv_item[field] = handler(inner_page_text)
         return dv_item
@@ -116,6 +129,5 @@ class JkforumSpider(scrapy.Spider):
         for line_regex in social_media_regexs:
             regex_result = re.search(line_regex, inner_page_text)
             if regex_result:
-                print(line_regex)
                 return regex_result.group(2).strip()
         return ""
