@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for dark_views project
+# Scrapy settings for dark_reviews project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "dark_views"
+BOT_NAME = "dark_reviews"
 
-SPIDER_MODULES = ["dark_views.spiders"]
-NEWSPIDER_MODULE = "dark_views.spiders"
+SPIDER_MODULES = ["dark_reviews.spiders"]
+NEWSPIDER_MODULE = "dark_reviews.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'dark_views (+http://www.yourdomain.com)'
+# USER_AGENT = 'dark_reviews (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 # SPIDER_MIDDLEWARES = {
-#    'dark_views.middlewares.DarkViewsSpiderMiddleware': 543,
+#    'dark_reviews.middlewares.DarkViewsSpiderMiddleware': 543,
 # }
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'dark_views.middlewares.DarkViewsDownloaderMiddleware': 543,
+#    'dark_reviews.middlewares.DarkViewsDownloaderMiddleware': 543,
 # }
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # ITEM_PIPELINES = {
-#    'dark_views.pipelines.DarkViewsPipeline': 300,
+#    'dark_reviews.pipelines.DarkViewsPipeline': 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

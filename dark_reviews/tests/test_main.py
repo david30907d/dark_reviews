@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from dark_views.spiders.jkforum import JkforumSpider
+from dark_reviews.spiders.jkforum import JkforumSpider
 
 JK_SPIDER = JkforumSpider()
 SESS = requests.session()

@@ -4,7 +4,7 @@ import unicodedata
 import scrapy
 from bs4 import BeautifulSoup
 
-from dark_views.items import DarkViewsItem
+from dark_reviews.items import DarkViewsItem
 
 
 class JkforumSpider(scrapy.Spider):

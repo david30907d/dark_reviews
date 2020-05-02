@@ -4,7 +4,7 @@
   "description": "[![Build Status](https://github.com/david30907d/pyproject_template.svg?token=FjZQpfwxUNPpEosXv6sy&branch=master)](https://github.com/david30907d/pyproject_template)",
   "main": "index.js",
   "scripts": {
-    "test": "cd dark_views; scrapy check; pytest --cov=project --cov-fail-under=50 --cov-report=term-missing tests",
+    "test": "cd dark_reviews; scrapy check; pytest --cov=project --cov-fail-under=50 --cov-report=term-missing tests",
     "commit": "git-cz",
     "check": "lint-staged"
   },

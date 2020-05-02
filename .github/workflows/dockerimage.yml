@@ -32,7 +32,7 @@ jobs:
         poetry install
     - name: Test with pytest
       run: |
-        cd dark_views
+        cd dark_reviews
         scrapy crawl jkforum -o output.json
         scrapy check
         pytest tests
