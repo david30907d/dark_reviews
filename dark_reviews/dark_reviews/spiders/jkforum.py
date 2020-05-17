@@ -103,7 +103,7 @@ class JkforumSpider(scrapy.Spider):
     def _get_img(outer_page_soup: Tag) -> str:
         if outer_page_soup.img:
             img_src = outer_page_soup.img.get("src")
-            return img_src if "http" not in img_src else ""
+            return img_src if "http" in img_src else ""
         return ""
 
     @staticmethod
