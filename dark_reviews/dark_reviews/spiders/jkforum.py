@@ -3,6 +3,7 @@ import unicodedata
 
 import scrapy
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 from dark_reviews.items import DarkViewsItem
 
@@ -11,9 +12,25 @@ class JkforumSpider(scrapy.Spider):
     name = "jkforum"
     allowed_domains = ["www.jkforum.net"]
     base_url = f"https://{allowed_domains[0]}"
-    start_urls = [
-        "https://www.jkforum.net/forum-1128-1.html",
-    ]
+    start_urls = (
+        "https://www.jkforum.net/type-1128-1949.html",
+        "https://www.jkforum.net/type-1128-1476.html",
+        "https://www.jkforum.net/type-1128-1948.html",
+        "https://www.jkforum.net/type-1128-1950.html",
+        "https://www.jkforum.net/type-1128-1951.html",
+        "https://www.jkforum.net/type-1128-2450.html",
+        "https://www.jkforum.net/type-1128-1947.html",
+        "https://www.jkforum.net/type-1128-1477.html",
+        "https://www.jkforum.net/type-1128-1946.html",
+        "https://www.jkforum.net/type-1128-1478.html",
+        "https://www.jkforum.net/type-1128-1482.html",
+        "https://www.jkforum.net/type-1128-2420.html",
+        "https://www.jkforum.net/type-1128-2421.html",
+        "https://www.jkforum.net/type-1128-1479.html",
+        "https://www.jkforum.net/type-1128-1480.html",
+        "https://www.jkforum.net/type-1128-2431.html",
+        "https://www.jkforum.net/type-1128-1481.html",
+    )
 
     def parse(self, response):
         """ This function parses jkforum. Some contracts are mingled
@@ -26,22 +43,23 @@ class JkforumSpider(scrapy.Spider):
             "img": self._get_img,
             "country": self._get_country,
             "city": self._get_city,
-            "url": lambda item: item.select("a.s.xst")[0],
+            "title": self._get_title,
+            # url should be the last one
+            "url": self._get_url,
         }
 
         soup = BeautifulSoup(response.text, features="lxml")
-        for item in soup.select("tbody")[:20]:
+        for item in soup.select("tbody")[:2]:
             dv_item = DarkViewsItem()
             if item.get("id"):
                 for field, handler in outside_page_handlers_config.items():
                     dv_item[field] = handler(item)
-                if dv_item["url"] and dv_item["url"].get("href"):
-                    dv_item["url"] = f"{self.base_url}/{dv_item['url']['href']}"
-                    yield scrapy.Request(
-                        dv_item["url"],
-                        callback=self.parse_inner_page,
-                        cb_kwargs=dv_item,
-                    )
+                    if dv_item.get("url"):
+                        yield scrapy.Request(
+                            dv_item["url"],
+                            callback=self.parse_inner_page,
+                            cb_kwargs=dv_item,
+                        )
 
     def parse_inner_page(self, response, **dv_item):
         """ This function parses jkforum. Some contracts are mingled
@@ -67,19 +85,37 @@ class JkforumSpider(scrapy.Spider):
             dv_item[field] = handler(inner_page_text)
         return dv_item
 
-    @staticmethod
-    def _get_img(item: DarkViewsItem) -> str:
-        if item.img:
-            return item.img.get("src")
+    @classmethod
+    def _get_url(cls, outer_page_soup: Tag) -> str:
+        url = outer_page_soup.select("a.s.xst")[0]
+        if url and url.get("href"):
+            return f"{cls.base_url}/{url['href']}"
         return ""
 
     @staticmethod
-    def _get_country(item: DarkViewsItem) -> str:
+    def _get_title(outer_page_soup: Tag) -> str:
+        title_candidate = outer_page_soup.select("a.s.xst")
+        if title_candidate:
+            return title_candidate[0].text
+        return ""
+
+    @staticmethod
+    def _get_img(outer_page_soup: Tag) -> str:
+        if outer_page_soup.img:
+            img_src = outer_page_soup.img.get("src")
+            return img_src if "http" not in img_src else ""
+        return ""
+
+    @staticmethod
+    def _get_country(outer_page_soup: Tag) -> str:
         return "台灣"
 
     @staticmethod
-    def _get_city(item: DarkViewsItem) -> str:
-        return "台北"
+    def _get_city(outer_page_soup: Tag) -> str:
+        city_dom = outer_page_soup.select("div em a")
+        if city_dom:
+            return city_dom[0].text
+        return "未知地區"
 
     @classmethod
     def _get_line_id(cls, inner_page_text: str) -> str:
@@ -133,4 +169,4 @@ class JkforumSpider(scrapy.Spider):
             regex_result = re.search(line_regex, inner_page_text)
             if regex_result:
                 return regex_result.group(2).strip()
-        return ""
+        return default

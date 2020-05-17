@@ -12,10 +12,14 @@
 
 ## Run
 
-```bash
-scrapy crawl jkforum -o output.json
-```
-
+1. Json:
+    ```bash
+    scrapy crawl jkforum -o output.json
+    ```
+2. CSV:
+    ```bash
+    scrapy crawl jkforum -o output.csv
+    ```
 ## Test
 
 please check [.github/workflows/dockerimage.yml](.github/workflows/dockerimage.yml)
