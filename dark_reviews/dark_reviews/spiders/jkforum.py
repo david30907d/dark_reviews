@@ -5,6 +5,7 @@ import scrapy
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
+from config import INDEX
 from dark_reviews.items import DarkViewsItem
 
 
@@ -49,7 +50,7 @@ class JkforumSpider(scrapy.Spider):
         }
 
         soup = BeautifulSoup(response.text, features="lxml")
-        for item in soup.select("tbody"):
+        for item in soup.select("tbody")[:INDEX]:
             dv_item = DarkViewsItem()
             if item.get("id"):
                 for field, handler in outside_page_handlers_config.items():

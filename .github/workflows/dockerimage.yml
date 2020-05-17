@@ -16,6 +16,7 @@ jobs:
   test:
     env:
       POETRY_VIRTUALENVS_CREATE: false
+      location: dev
 
     runs-on: ubuntu-latest
 
