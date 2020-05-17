@@ -18,7 +18,7 @@ def test_parse_inner_page1() -> None:
             "whatsapp_id": "",
             "phone_number": "",
             "website": "",
-            "price": "",
+            "price": 0,
             "img": "",
         }:
             raise AssertionError("parse_inner_page!")
@@ -35,7 +35,7 @@ def test_parse_inner_page2() -> None:
             "whatsapp_id": "",
             "phone_number": "",
             "website": "",
-            "price": "",
+            "price": 0,
             "img": "",
         }:
             raise AssertionError("parse_inner_page!")
@@ -86,7 +86,7 @@ def test_parse_inner_page5() -> None:
             "whatsapp_id": "",
             "phone_number": "",
             "website": "",
-            "price": "",
+            "price": 0,
             "img": "",
         }:
             raise AssertionError("parse_inner_page!")
@@ -137,7 +137,7 @@ def test_parse_inner_page8() -> None:
             "whatsapp_id": "",
             "phone_number": "",
             "website": "",
-            "price": "",
+            "price": 0,
             "img": "",
         }:
             raise AssertionError("parse_inner_page!")
@@ -154,7 +154,7 @@ def test_parse_inner_page9() -> None:
             "whatsapp_id": "",
             "phone_number": "",
             "website": "",
-            "price": "",
+            "price": 0,
             "img": "",
         }:
             raise AssertionError("parse_inner_page!")
