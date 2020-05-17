@@ -88,10 +88,10 @@ class JkForumAdapter(object):
     def get_item_name(self):
         prefix = self.jkform_item["city"]
         if self.jkform_item["line_id"]:
-            return prefix + f"Line: {self.jkform_item['line_id']}"
+            return f"{prefix}-Line: {self.jkform_item['line_id']}"
         elif self.jkform_item["phone_number"]:
-            return prefix + f"手機: {self.jkform_item['phone_number']}"
+            return f"{prefix}-手機: {self.jkform_item['phone_number']}"
         elif self.jkform_item["wechat_id"]:
-            return prefix + f"WeChat: {self.jkform_item['wechat_id']}"
+            return f"{prefix}-WeChat: {self.jkform_item['wechat_id']}"
         elif self.jkform_item["whatsapp_id"]:
-            return prefix + f"WhatsApp: {self.jkform_item['whatsapp_id']}"
+            return f"{prefix}-WhatsApp: {self.jkform_item['whatsapp_id']}"
