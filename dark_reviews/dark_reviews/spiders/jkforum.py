@@ -87,9 +87,9 @@ class JkforumSpider(scrapy.Spider):
 
     @classmethod
     def _get_url(cls, outer_page_soup: Tag) -> str:
-        url = outer_page_soup.select("a.s.xst")[0]
-        if url and url.get("href"):
-            return f"{cls.base_url}/{url['href']}"
+        url = outer_page_soup.select("a.s.xst")
+        if url and url[0].get("href"):
+            return f"{cls.base_url}/{url[0]['href']}"
         return ""
 
     @staticmethod
