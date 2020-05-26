@@ -25,7 +25,7 @@ class DarkViewsPipeline:
         if (
             not have_at_least_one_social_media_id
             or item["price"] == 0
-            or item["img"] != ""
+            or item["img"] == ""
         ):
             raise DropItem("Should have at least one social media id!")
         return JkForumAdapter(item).item
