@@ -22,10 +22,13 @@ class DarkViewsPipeline:
             if item.get(social_media_id):
                 have_at_least_one_social_media_id = True
                 self.duplicates.add(item.get(social_media_id))
-        if not have_at_least_one_social_media_id or item["price"] == 0:
+        if (
+            not have_at_least_one_social_media_id
+            or item["price"] == 0
+            or item["img"] != ""
+        ):
             raise DropItem("Should have at least one social media id!")
         return JkForumAdapter(item).item
-        # return item
 
 
 class JkForumAdapter(object):
