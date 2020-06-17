@@ -9,6 +9,7 @@ python = "^3.7"
 requests = "^2.23.0"
 scrapy = "^2.1.0"
 bs4 = "^0.0.1"
+opencc-python-reimplemented = "^0.1.6"
 
 [tool.poetry.dev-dependencies]
 safety = "^1.8.7"

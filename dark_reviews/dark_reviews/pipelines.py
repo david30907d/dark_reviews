@@ -22,10 +22,13 @@ class DarkViewsPipeline:
             if item.get(social_media_id):
                 have_at_least_one_social_media_id = True
                 self.duplicates.add(item.get(social_media_id))
-        if not have_at_least_one_social_media_id or item["price"] == 0:
+        if (
+            not have_at_least_one_social_media_id
+            or item["price"] == 0
+            or not item["img"]
+        ):
             raise DropItem("Should have at least one social media id!")
         return JkForumAdapter(item).item
-        # return item
 
 
 class JkForumAdapter(object):
@@ -35,7 +38,7 @@ class JkForumAdapter(object):
         self.item["handleId"] = self.get_item_name()
         self.item["fieldType"] = "Product"
         self.item["name"] = self.get_item_name()
-        self.item["description"] = jkform_item["title"]
+        self.item["description"] = self.warning() + jkform_item["title"]
         self.item["productImageUrl"] = jkform_item["img"]
         self.item["collection"] = jkform_item["city"]
         self.item["sku"] = ""
@@ -95,3 +98,6 @@ class JkForumAdapter(object):
             return f"{prefix}-WeChat: {self.jkform_item['wechat_id']}"
         elif self.jkform_item["whatsapp_id"]:
             return f"{prefix}-WhatsApp: {self.jkform_item['whatsapp_id']}"
+
+    def warning(self):
+        return "請勿於本平台付費預約按摩師，請自行聯繫，任何交易皆與本平台無關。"
