@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
+import json
+
+from scrapy.exporters import JsonItemExporter
+
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 from scrapy.exceptions import DropItem
@@ -103,3 +107,19 @@ class JkForumAdapter(object):
 
     def warning(self):
         return "請勿於本平台付費預約按摩師，請自行聯繫，任何交易皆與本平台無關。"
+
+
+class A1024sijiPipeline(object):
+
+    file = None
+
+    def open_spider(self, spider):
+        self.file = open("a1024siji.jl", "w")
+
+    def close_spider(self, spider):
+        self.file.close()
+
+    def process_item(self, item, spider):
+        line = json.dumps(dict(item)) + "\n"
+        self.file.write(line)
+        return item

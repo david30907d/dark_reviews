@@ -75,3 +75,11 @@ class WixItem(scrapy.Item):
     customTextField1 = scrapy.Field()
     customTextCharLimit1 = scrapy.Field()
     customTextMandatory1 = scrapy.Field()
+
+
+class WixBlog(scrapy.Item):
+    # define the fields for your item here like:
+    title = scrapy.Field()
+    url = scrapy.Field()
+    content = scrapy.Field()
+    images = scrapy.Field()
